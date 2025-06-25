@@ -81,7 +81,7 @@ ItemNameOrder:
 	db SUN_STONE 		; 42
 	db EVERSTONE 		; 43
 
-	db EXP_SHARE 		; 44
+;	db EXP_SHARE 		; 44
 
 	db BERRY 			; 45
 	db PSNCUREBERRY 	; 46
@@ -168,6 +168,7 @@ ItemNameOrder:
     db OLD_ROD 			; 8d
     db GOOD_ROD			; 8e
     db SUPER_ROD		; 8f
+    db EXP_ALL   		; 44
     db ITEMFINDER		; 90
     db POKE_FLUTE		; 91
     db COIN_CASE		; 92
