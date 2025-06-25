@@ -123,10 +123,10 @@ Script_GivePlayerHisPrize:
 	setval BATTLETOWERACTION_GIVEREWARD
 	special BattleTowerAction
 	ifequal POTION, Script_YourPackIsStuffedFull
-	ifequal NO_ITEM, Script_GotDecoration
+;	ifequal NO_ITEM, Script_GotDecoration
 	getitemname STRING_BUFFER_4, USE_SCRIPT_VAR
-	giveitem ITEM_FROM_MEM, 1
-	writetext Text_PlayerGot
+	giveitem ITEM_FROM_MEM, 5
+	writetext Text_PlayerGotFive
 	setval BATTLETOWERACTION_1D
 	special BattleTowerAction
 	closetext
@@ -533,8 +533,8 @@ Text_AskRegisterRecord_Mobile: ; unreferenced
 	line "CENTER?"
 	done
 
-Text_PlayerGot:
-	text "<PLAYER> got"
+Text_PlayerGotFive:
+	text "<PLAYER> got five"
 	line "@"
 	text_ram wStringBuffer4
 	text "!@"
