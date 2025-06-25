@@ -359,6 +359,16 @@ wBattleMonNickname:: ds MON_NAME_LENGTH
 
 wBattleMon:: battle_struct wBattleMon
 
+; intro water/grass/fire cutscene data
+	ds 4
+wIntroJumptableIndex:: db
+wIntroBGMapPointer:: dw
+wIntroTilemapPointer:: dw
+wIntroTilesPointer:: dw
+wIntroFrameCounter1:: db
+wIntroFrameCounter2:: db
+wIntroSpriteStateFlag:: db
+
 	ds 2
 
 wWildMon:: db
@@ -3493,8 +3503,6 @@ wOBPals2:: ds 8 palettes
 wLYOverrides:: ds SCREEN_HEIGHT_PX
 wLYOverridesEnd::
 
-	ds 1
-
 wMagnetTrain:: ; used only for BANK(wMagnetTrain)
 wMagnetTrainDirection:: db
 wMagnetTrainInitPosition:: db
@@ -3502,9 +3510,11 @@ wMagnetTrainHoldPosition:: db
 wMagnetTrainFinalPosition:: db
 wMagnetTrainPlayerSpriteInitX:: db
 
-	ds 106
+	ds 11
 
-wLYOverridesBackup:: ds SCREEN_HEIGHT_PX
+wLYOverrides2:: ds SCREEN_HEIGHT_PX - 48
+wLYOverridesBackup:: ds SCREEN_HEIGHT_PX - 96
+wLYOverrides2End:: ds SCREEN_HEIGHT_PX - 48
 wLYOverridesBackupEnd::
 
 

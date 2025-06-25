@@ -1,3 +1,4 @@
+SECTION "Mon Icons", ROMX
 Icons: ; used only for BANK(Icons)
 
 SECTION "Mon Icons 1", ROMX
