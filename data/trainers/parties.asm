@@ -386,74 +386,13 @@ PKMNTrainerGroup:
 	db 30, CROCONAW
 	db -1 ; end
 
-	; SMITH
-	db "SMITH@", TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM_MOVES
-		db 70, RAIKOU
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db MAGNET
-				db THUNDERBOLT, CRUNCH, ROAR, DOUBLE_TEAM
-		db 70, VENUSAUR
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db GOLD_BERRY
-				db LEECH_SEED, TOXIC, PROTECT, GIGA_DRAIN
-		db 70, ALAKAZAM
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db TWISTEDSPOON
-				db PSYCHIC_M, THUNDERPUNCH, DYNAMICPUNCH, SHADOW_BALL
-		db 70, SCIZOR
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db METAL_COAT
-				db TWINEEDLE, SWORDS_DANCE, STEEL_WING, LIGHT_SCREEN
-		db 70, DRAGONITE
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db BITTER_BERRY
-				db OUTRAGE, FLAMETHROWER, THUNDERBOLT, EXTREMESPEED
-		db 70, FERALIGATR
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db MIRACLEBERRY
-				db SURF, EARTHQUAKE, ICE_PUNCH, CRUNCH
+	; CAL (3)
+	db "CAL@", TRAINERTYPE_NORMAL
+	db 50, MEGANIUM
+	db 50, TYPHLOSION
+	db 50, FERALIGATR
 	db -1 ; end
-
-	; CRAIG
-	db "CRAIG@", TRAINERTYPE_NICKNAME | TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM_MOVES
-		db 70, JOLTEON	
-				db "@JOLTEON@"
-				db $ed, PERFECT_DV ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db MINT_BERRY
-				db BATON_PASS, GROWTH, THUNDERBOLT, HIDDEN_POWER
-		db 70, MEGANIUM
-				db "@MEGANIUM@"
-				db $df, $df ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db LEFTOVERS
-				db GIGA_DRAIN, LIGHT_SCREEN, LEECH_SEED, SYNTHESIS
-		db 70, AERODACTYL
-				db "@AERODACTYL@"
-				db PERFECT_DV, $fd ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db GOLD_BERRY
-				db CURSE, EARTHQUAKE, ANCIENTPOWER, SUBSTITUTE
-		db 70, MISDREAVUS
-				db "@MISDREAVUS@"
-				db $df, $df ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db MIRACLEBERRY
-				db MEAN_LOOK, PERISH_SONG, PROTECT, SING
-		db 70, SUICUNE
-				db "@SUICUNE@"
-				db $df, PERFECT_DV ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db MYSTIC_WATER
-				db SURF, ICE_BEAM, REST, SLEEP_TALK
-		db 70, ARCANINE
-				db "@FURBALL@"
-				db $ee, PERFECT_DV ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db CHARCOAL
-				db FIRE_BLAST, EXTREMESPEED, CURSE, HIDDEN_POWER
-	db -1 ; end
-
+	
 BrunoGroup:
 	; BRUNO (1)
 	db "BRUNO@", TRAINERTYPE_ITEM_MOVES
@@ -4031,45 +3970,4 @@ ArcherGroup:
 	db 29, TAUROS,      RAGE, FRUSTRATION, HORN_ATTACK, PURSUIT
 	db 30, HOUNDOOM,    FLAME_WHEEL, BITE, SMOG, ROAR   
 	db 30, SLOWBRO,     HEADBUTT, CURSE, CONFUSION, SURF
-	db -1 ; end
-	
-PKMNTrainerFGroup:
-	; WEEBRA
-	db "WEEBRA@", TRAINERTYPE_NICKNAME | TRAINERTYPE_DVS | TRAINERTYPE_STAT_EXP | TRAINERTYPE_ITEM_MOVES
-		db 70, FORRETRESS	
-				db "@FORRETRESS@"
-				db $dc, $dd ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db QUICK_CLAW
-				db TOXIC, ROLLOUT, SANDSTORM, PROTECT
-		db 70, QUAGSIRE
-				db "@QUAGSIRE@"
-				db $dc, $dd ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db QUICK_CLAW
-				db ICE_PUNCH, SLUDGE_BOMB, SURF, EARTHQUAKE
-		db 70, AERODACTYL
-				db "@AERODACTYL@"
-				db $dc, $dd ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db SCOPE_LENS
-				db SKY_ATTACK, ROCK_SLIDE, FLAMETHROWER, IRON_TAIL
-		db 70, SNORLAX
-				db "@SNORLAX@"
-				db $dc, $dd ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db LEFTOVERS
-				db REST, EARTHQUAKE, CURSE, SLEEP_TALK
-		db 70, CELEBI
-				db "@CELEBI@"
-				db $dc, $dd ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db MIRACLEBERRY
-				db PSYCHIC_M, LEECH_SEED, GIGA_DRAIN, SHADOW_BALL
-		db 70, HITMONTOP
-				db "@Cinderella@"
-				db $dc, PERFECT_DV ; atk|def, spd|spc
-				dw $01FE, $01FE, $01FE, $01FE, $01FE ; hp, atk, def, spd, spc
-				db BERSERK_GENE
-				db TRIPLE_KICK, THIEF, HIDDEN_POWER, DIG
 	db -1 ; end

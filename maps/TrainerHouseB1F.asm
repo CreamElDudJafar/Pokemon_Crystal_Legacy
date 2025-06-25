@@ -4,33 +4,15 @@
 
 TrainerHouseB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene ; SCENE_DEFAULT
+	scene_script TrainerHouseB1FNoopScene, SCENE_TRAINERHOUSEB1F_ASK_BATTLE
 
 	def_callbacks
 
-.DummyScene:
+TrainerHouseB1FNoopScene:
 	end
 
 TrainerHouseReceptionistScript:
 	turnobject PLAYER, UP
-.GetDayForSprite: ; make sure overworld sprite is correct for trainer
-	readvar VAR_WEEKDAY
-	ifequal MONDAY, .Smith_Craig_Sprite
-	ifequal TUESDAY, .Smith_Craig_Sprite
-	ifequal WEDNESDAY, .Weebra_Sprite
-	ifequal THURSDAY, .Smith_Craig_Sprite
-	ifequal FRIDAY, .Smith_Craig_Sprite
-	ifequal SATURDAY, .Smith_Craig_Sprite
-	ifequal SUNDAY, .Weebra_Sprite
-.Smith_Craig_Sprite
-	variablesprite SPRITE_TRAINER_HOUSE_PKMN_TRAINER, SPRITE_CHRIS
-	special LoadUsedSpritesGFX
-	sjump .GotSprite
-.Weebra_Sprite
-	variablesprite SPRITE_TRAINER_HOUSE_PKMN_TRAINER, SPRITE_KRIS
-	sjump .GotSprite
-
-.GotSprite:
 	opentext
 	checkflag ENGINE_FOUGHT_IN_TRAINER_HALL_TODAY
 	iftrue .FoughtTooManyTimes
@@ -42,24 +24,7 @@ TrainerHouseReceptionistScript:
 	sjump .GotName
 
 .GetCal3Name:
-	readvar VAR_WEEKDAY
-	ifequal MONDAY, .SmithName
-	ifequal TUESDAY, .CraigName
-	ifequal WEDNESDAY, .WeebraName
-	ifequal THURSDAY, .SmithName
-	ifequal FRIDAY, .CraigName
-	ifequal SATURDAY, .SmithName
-	ifequal SUNDAY, .WeebraName
-.SmithName
-	gettrainername STRING_BUFFER_3, CAL, SMITH ; SMITH
-	sjump .GotName
-.CraigName
-	gettrainername STRING_BUFFER_3, CAL, CRAIG ; CRAIG
-	sjump .GotName
-.WeebraName
-	gettrainername STRING_BUFFER_3, PKMNTRAINERF, WEEBRA ; WEEBRA
-	sjump .GotName
-
+	gettrainername STRING_BUFFER_3, CAL, CAL3
 .GotName:
 	writetext TrainerHouseB1FYourOpponentIsText
 	promptbutton
@@ -71,61 +36,22 @@ TrainerHouseReceptionistScript:
 	waitbutton
 	closetext
 	applymovement PLAYER, Movement_EnterTrainerHouseBattleRoom
-	special TrainerHouse
-	iffalse .NoSpecialBattle
 	opentext
 	writetext TrainerHouseB1FCalBeforeText
 	waitbutton
 	closetext
+	special TrainerHouse
+	iffalse .NoSpecialBattle
 	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
 	loadtrainer CAL, CAL2
-	checkflag ENGINE_HARD_MODE
-	iffalse .normalmode_CAL2
-	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
-.normalmode_CAL2
 	startbattle
 	reloadmapafterbattle
 	iffalse .End
 .NoSpecialBattle:
-	opentext
-	readvar VAR_WEEKDAY
-	ifequal MONDAY, .SmithBeforeText
-	ifequal TUESDAY, .CraigBeforeText
-	ifequal WEDNESDAY, .WeebraBeforeText
-	ifequal THURSDAY, .SmithBeforeText
-	ifequal FRIDAY, .CraigBeforeText
-	ifequal SATURDAY, .SmithBeforeText
-	ifequal SUNDAY, .WeebraBeforeText
-.SmithBeforeText
-	writetext TrainerHouseB1FSmithBeforeText
-	waitbutton
-	closetext
-	winlosstext TrainerHouseB1FSmithBeatenText, 0
+	winlosstext TrainerHouseB1FCalBeatenText, 0
 	setlasttalked TRAINERHOUSEB1F_CHRIS
-	loadtrainer CAL, SMITH ; SMITH
-	sjump .DoneBattle
-.CraigBeforeText
-	writetext TrainerHouseB1FCraigBeforeText
-	waitbutton
-	closetext
-	winlosstext TrainerHouseB1FCraigBeatenText, 0 
-	setlasttalked TRAINERHOUSEB1F_CHRIS
-	loadtrainer CAL, CRAIG ; CRAIG
-	sjump .DoneBattle
-.WeebraBeforeText
-	writetext TrainerHouseB1FWeebraBeforeText
-	waitbutton
-	closetext
-	winlosstext TrainerHouseB1FWeebraBeatenText, 0
-	setlasttalked TRAINERHOUSEB1F_CHRIS
-	loadtrainer PKMNTRAINERF, WEEBRA ; WEEBRA
-	sjump .DoneBattle
-.DoneBattle
-	checkflag ENGINE_HARD_MODE
-	iffalse .normalmode_WEEBRA ; WEEBRA
-	loadvar VAR_BATTLETYPE, BATTLETYPE_SETNOITEMS
-.normalmode_WEEBRA ; WEEBRA
+	loadtrainer CAL, CAL3
 	startbattle
 	reloadmapafterbattle
 .End:
@@ -235,48 +161,10 @@ TrainerHouseB1FCalBeatenText:
 	line "Darn…"
 	done
 
-TrainerHouseB1FSmithBeatenText:
-	text "I lost…"
-	line "Not so zesty."
-	done
-
-TrainerHouseB1FCraigBeatenText:
-	text "This is good data!"
-	line "I can use this."
-	done
-
-TrainerHouseB1FWeebraBeatenText:
-	text "Aw, shucks…"
-
-	para "And I didn't even"
-	line "get to use my"
-	cont "'Essence of"
-	cont "Breaker Style'…"
-	done
-
 TrainerHouseB1FCalBeforeText:
 	text "I traveled out"
 	line "here just so I"
 	cont "could battle you."
-	done
-
-TrainerHouseB1FSmithBeforeText:
-	text "Hey, what's up?"
-	done
-
-TrainerHouseB1FCraigBeforeText:
-	text "I'm trying to"
-	line "gain battle"
-	cont "experience"
-	
-	para "for a game I'm"
-	line "making based on"
-	cont "#MON."
-	done
-
-TrainerHouseB1FWeebraBeforeText:
-	text "You look pretty"
-	line "strong, eh?"
 	done
 
 TrainerHouseB1F_MapEvents:
@@ -292,4 +180,4 @@ TrainerHouseB1F_MapEvents:
 
 	def_object_events
 	object_event  7,  1, SPRITE_RECEPTIONIST, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
-	object_event  6, 11, SPRITE_TRAINER_HOUSE_PKMN_TRAINER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1
+	object_event  6, 11, SPRITE_CHRIS, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, ObjectEvent, -1

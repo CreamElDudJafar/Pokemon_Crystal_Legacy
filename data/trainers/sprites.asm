@@ -70,5 +70,4 @@ BTTrainerClassSprites:
 	db SPRITE_SUPER_NERD
 	db SPRITE_ROCKET
 	db SPRITE_ARCHER
-	db SPRITE_KRIS
 	assert_table_length NUM_TRAINER_CLASSES

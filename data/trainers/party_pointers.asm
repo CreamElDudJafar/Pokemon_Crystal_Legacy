@@ -72,5 +72,4 @@ TrainerGroups:
 	dba MysticalmanGroup
 	dba BossGroup
 	dba ArcherGroup
-	dba PKMNTrainerFGroup
 	assert_table_length NUM_TRAINER_CLASSES

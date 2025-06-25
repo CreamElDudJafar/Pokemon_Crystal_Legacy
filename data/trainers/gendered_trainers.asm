@@ -40,5 +40,4 @@ FemaleTrainers:
 	db PICNICKER
 	db KIMONO_GIRL
 	db POKEFANF
-	db COOLTRAINERF
 .End

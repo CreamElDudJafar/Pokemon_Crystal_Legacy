@@ -72,5 +72,4 @@ BTTrainerClassGenders:
 	db MALE   ; MYSTICALMAN
 	db MALE   ; BOSS
 	db MALE   ; ARCHER
-	db FEMALE ; PKMNTRAINERF
 	assert_table_length NUM_TRAINER_CLASSES
