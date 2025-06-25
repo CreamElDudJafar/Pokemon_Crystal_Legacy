@@ -104,60 +104,6 @@ CreditsStringsPointers:
 	dw .UsCoordination
 	dw .TextTranslation
 	dw .PaadTesting
-	dw .CreatedBy
-	dw .SmithPlaysPokemons
-	dw .Dev
-	dw .TheSmithPlays
-	dw .cRzShadows
-	dw .Editor
-	dw .Weebra
-	dw .DiscordAdmin
-	dw .Jaas
-	dw .Moderators
-	dw .Mod1
-	dw .Mod2
-	dw .Mod3
-	dw .Mod4
-	dw .Playtesters
-	dw .Tester1
-	dw .Tester2
-	dw .Tester3
-	dw .Tester4
-	dw .Tester5
-	dw .Tester6
-	dw .Tester7
-	dw .Tester8
-	dw .Tester9
-	dw .Tester10
-	dw .Tester11
-	dw .Tester12
-	dw .SpriteArtists
-	dw .SpriteArtist1
-	dw .SpriteArtist2
-	dw .SpriteArtist3
-	dw .SpriteArtist4
-	dw .SpriteArtist5
-	dw .SpriteArtist6
-	dw .SpriteArtist7
-	dw .SpriteArtist8
-	dw .SpriteArtist9
-	dw .Tutorials
-	dw .Nayru
-	dw .Pokecrystal2
-	dw .Pokecrystal3
-	dw .Pokecrystal4
-	dw .Pokecrystal5
-	dw .Pokecrystal6
-	dw .Pokecrystal7
-	dw .Pokecrystal8
-	dw .Pokecrystal9
-	dw .Pokecrystal10
-	dw .Pokecrystal11
-	dw .Pokecrystal12
-	dw .Pokecrystal13
-	dw .Pokecrystal14
-	dw .Pokecrystal
-	dw .NayruThanksText
 	assert_table_length NUM_CREDITS_STRINGS
 
 .SatoshiTajiri:       db "   SATOSHI TAJIRI@"         ; "たじり　さとし@"
@@ -235,7 +181,11 @@ CreditsStringsPointers:
 .KazuyoshiOsawa:      db "  KAZUYOSHI OSAWA@"
 .KimikoNakamichi:     db "  KIMIKO NAKAMICHI@"
 .Staff:               db "      #MON"                 ; "ポケットモンスター"
-                    next "   CRYSTAL LEGACY"          ; "　　クりスタル　バージョン"
+                            IF DEF(_GOLD)
+                            next "    GOLD VERSION"
+                            ELIF DEF(_SILVER)
+                            next "   SILVER VERSION"
+                            ENDC
                     next "       STAFF@"              ; "　　　　スタッフ@"
 .Director:            db "      DIRECTOR@"            ; "エグゼクティブ　ディレクター@"
 .CoDirector:          db "    CO-DIRECTOR@"           ; "ディレクター@"
@@ -266,65 +216,6 @@ CreditsStringsPointers:
 .UsCoordination:      db "  US COORDINATION@"
 .TextTranslation:     db "  TEXT TRANSLATION@"
 .PaadTesting:         db "    PAAD TESTING@"
-.CreatedBy:		 	  db "    CREATED BY@"
-.SmithPlaysPokemons:  db " SMITHPLAYSPOKEMON@"
-.Dev:				  db "     DEVELOPER@"
-.TheSmithPlays: 	  db "  THE SMITH PLAYS@"
-.cRzShadows: 		  db "    CRZ SHADOWS@"
-.Editor:			  db "      EDITOR@"
-.Weebra: 		      db "      WEEBRA@"
-.DiscordAdmin:		  db "   DISCORD ADMIN@"
-.Jaas:				  db "    JAASHOOUHH@"
-.Moderators:		  db "    MODERATORS@"
-.Mod1:				  db "       REGI@"
-.Mod2:				  db "       AERO@"
-.Mod3:				  db "       DAILY@"
-.Mod4:				  db "       ZACH@"
-.Playtesters:		  db "    PLAYTESTERS@"
-.Tester1:			  db "       DISQ@"
-.Tester2:			  db "     TIBERIUS@"
-.Tester3:			  db "       SABLE@"
-.Tester4:			  db "      NIFTIMO@"
-.Tester5:			  db "      TAVROS@"
-.Tester6:			  db "      KARLOS@"
-.Tester7:			  db "   READER DRAGON@"
-.Tester8:			  db "     HALF1SCH@"
-.Tester9:			  db "       ISONA@"
-.Tester10:			  db "      TALOS-8@"
-.Tester11:			  db "    WOOTONMAJR@"
-.Tester12:			  db "       BRICE@"
-.SpriteArtists:		  db "  SPRITE ARTISTS@"
-.SpriteArtist1:		  db "       KATT@"
-.SpriteArtist2:		  db "      CHAMBER@"
-.SpriteArtist3:		  db "     SOLOO993@"
-.SpriteArtist4:		  db "   BLUE EMERALD@"
-.SpriteArtist5:		  db "       LAKE@"
-.SpriteArtist6:		  db "      NESLUG@"
-.SpriteArtist7:		  db "     PIKACHU25@"
-.SpriteArtist8:		  db "     TOM WANG@"
-.SpriteArtist9:		  db "      SEASICK@"
-.Tutorials:			  db "     TUTORIALS@"
-.Nayru: 		      db "      NAYRU62@"
-.Pokecrystal2: 		  db "      RANGI42@"
-.Pokecrystal3: 		  db "       IDAIN@"
-.Pokecrystal4: 		  db "    DAMIENDOURY@"
-.Pokecrystal5: 		  db "  AAAAAA123456789@"
-.Pokecrystal6: 		  db "    EDTV-THEVOID@"
-.Pokecrystal7: 		  db "   COCO-BANDICOOT@"
-.Pokecrystal8: 		  db "   MAJORAGNOSTIC@"
-.Pokecrystal9: 		  db "       KDLPRO@"
-.Pokecrystal10: 	  db "      NICK-PC@"
-.Pokecrystal11: 	  db "     XAEROCHILL@"
-.Pokecrystal12: 	  db "    NOBODYSOCIETY@"
-.Pokecrystal13: 	  db "     LUTHER7718@"
-.Pokecrystal14: 	  db "      MAUVRE@"
-.Pokecrystal:         db "  THANK YOU TO THE"
-					next " PRET TEAM FOR THE"
-					next "    POKECRYSTAL"
-					next "    DISASSEMBLY@"
-.NayruThanksText:     db "   IMPROVED DEX"
-					next " POKEMON DVS SCREEN"
-					next "      MADE BY@"
 
 .Copyright:
 	;    (C) 1  9  9  5 - 2  0  0  1     N  i  n  t  e  n  d  o
