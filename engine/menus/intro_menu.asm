@@ -724,6 +724,37 @@ endc
 	call NamePlayer
 	ld hl, OakText7
 	call PrintText
+	call RotateThreePalettesRight
+	call ClearTilemap
+
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, RIVAL1
+	ld [wTrainerClass], a
+	call Intro_PrepTrainerPic
+
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_RotatePalettesLeftFrontpic
+
+	ld hl, OakText8
+	call PrintText
+	call NameRivalIntro
+	ld hl, OakText9
+	call PrintText
+	call RotateThreePalettesRight
+	call ClearTilemap
+
+	xor a
+	ld [wCurPartySpecies], a
+	farcall DrawIntroPlayerPic
+
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call Intro_RotatePalettesLeftFrontpic
+	ld hl, OakText10
+	call PrintText
+
 	ret
 
 OakText1:
@@ -757,6 +788,18 @@ OakText6:
 
 OakText7:
 	text_far _OakText7
+	text_end
+
+OakText8:
+	text_far _OakText8
+	text_end
+
+OakText9:
+	text_far _OakText9
+	text_end
+
+OakText10:
+	text_far _OakText10
 	text_end
 
 NamePlayer:
@@ -819,6 +862,53 @@ StorePlayerName:
 	ld hl, wPlayerName
 	call ByteFill
 	ld hl, wPlayerName
+	ld de, wStringBuffer2
+	call CopyName2
+	ret
+
+NameRivalIntro:
+	farcall MovePlayerPicRight
+	farcall ShowRivalNamingChoices
+	ld a, [wMenuCursorY]
+	dec a
+	jr z, .NewName2
+	call StoreRivalName
+	farcall ApplyMonOrTrainerPals
+	farcall MovePlayerPicLeft
+	ret
+
+.NewName2:
+	ld b, NAME_RIVAL
+	ld de, wRivalName
+	farcall NamingScreen
+
+	call RotateThreePalettesRight
+	call ClearTilemap
+
+	call LoadFontsExtra
+	call WaitBGMap
+
+	xor a
+	ld [wCurPartySpecies], a
+	ld a, RIVAL1
+	ld [wTrainerClass], a
+	call Intro_PrepTrainerPic
+
+	ld b, SCGB_TRAINER_OR_MON_FRONTPIC_PALS
+	call GetSGBLayout
+	call RotateThreePalettesLeft
+
+	ld hl, wRivalName
+	ld de, RivalNameArray
+	call InitName
+	ret
+
+StoreRivalName:
+	ld a, "@"
+	ld bc, NAME_LENGTH
+	ld hl, wRivalName
+	call ByteFill
+	ld hl, wRivalName
 	ld de, wStringBuffer2
 	call CopyName2
 	ret
@@ -914,6 +1004,24 @@ Intro_WipeInFrontpic:
 Intro_PrepTrainerPic:
 	ld de, vTiles2
 	farcall GetTrainerPic
+	xor a
+	ldh [hGraphicStartTile], a
+	hlcoord 6, 4
+	lb bc, 7, 7
+	predef PlaceGraphic
+	ret
+
+Intro_PrepPlayerPic:
+	ld de, vTiles2
+	ld a, [wPlayerGender]
+	bit PLAYERGENDER_FEMALE_F, a
+	ld hl, ChrisPic
+	jr z, .gotPic
+	ld hl, KrisPic
+.gotPic
+	lb bc, BANK(ChrisPic), 7 * 7
+	assert BANK(ChrisPic) == BANK(KrisPic)
+	predef DecompressGet2bpp
 	xor a
 	ldh [hGraphicStartTile], a
 	hlcoord 6, 4

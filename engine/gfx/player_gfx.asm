@@ -42,6 +42,7 @@ MovePlayerPic:
 	ret z
 	push hl
 	push bc
+	push de
 	ld a, l
 	sub e
 	ld l, a
@@ -50,6 +51,7 @@ MovePlayerPic:
 	ld h, a
 	lb bc, 7, 7
 	call ClearBox
+	pop de
 	pop bc
 	pop hl
 	jr .loop
@@ -61,6 +63,16 @@ ShowPlayerNamingChoices:
 	jr z, .got_header
 	ld hl, KrisNameMenuHeader
 .got_header
+	call LoadMenuHeader
+	call VerticalMenu
+	ld a, [wMenuCursorY]
+	dec a
+	call CopyNameFromMenu
+	call CloseWindow
+	ret
+
+ShowRivalNamingChoices:
+	ld hl, RivalNameMenuHeader
 	call LoadMenuHeader
 	call VerticalMenu
 	ld a, [wMenuCursorY]
