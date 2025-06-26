@@ -245,10 +245,10 @@ _ShowLinkBattleParticipants:
 	hlcoord 4, 10
 	ld de, wOTPlayerName
 	call PlaceString
-	hlcoord 9, 8
-	ld a, "<BOLD_V>"
-	ld [hli], a
-	ld [hl], "<BOLD_S>"
+;	hlcoord 9, 8
+;	ld a, "<BOLD_V>"
+;	ld [hli], a
+;	ld [hl], "<BOLD_S>"
 	farcall LinkBattle_TrainerHuds ; no need to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
