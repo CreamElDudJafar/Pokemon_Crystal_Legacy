@@ -639,11 +639,19 @@ InitializeEventsScript:
 	setevent EVENT_SAFFRON_TRAIN_STATION_POPULATION
 	setevent EVENT_INDIGO_PLATEAU_POKECENTER_RIVAL
 	setevent EVENT_INITIALIZED_EVENTS
+	callasm .mystery_gift_flag
 	setevent EVENT_CAUGHT_MOLTRES
 	setevent EVENT_CAUGHT_ARTICUNO
 	setevent EVENT_CAUGHT_ZAPDOS
 	setevent EVENT_ROUTE_24_MEW
 	endcallback
+
+.mystery_gift_flag
+	ld a, BANK(sMysteryGiftTrainerHouseFlag)
+	call OpenSRAM
+	xor a
+	ld [sMysteryGiftTrainerHouseFlag], a
+	jp CloseSRAM
 
 AskNumber1MScript:
 	special RandomPhoneMon
