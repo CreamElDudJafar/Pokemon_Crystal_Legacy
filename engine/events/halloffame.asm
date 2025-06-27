@@ -585,29 +585,29 @@ HOF_AnimatePlayerPic:
 
 .NormalMode:
 	hlcoord 32, 1
-	ld de, .crystal_legacy_1
+	ld de, .Game
 	call PlaceString
 
 	hlcoord 32, 2
-	ld de, .crystal_legacy_2
+	ld de, .Version
 	call PlaceString
 	jr .EndMode
 .HardMode:
 	hlcoord 32, 1
-	ld de, .crystal_legacy_2
+	ld de, .Version
 	call PlaceString
 
 	hlcoord 32, 2
-	ld de, .crystal_legacy_3
+	ld de, .Hard
 	call PlaceString
 	jr .EndMode
 .HardcoreMode:
 	hlcoord 32, 1
-	ld de, .crystal_legacy_2
+	ld de, .Version
 	call PlaceString
 
 	hlcoord 32, 2
-	ld de, .crystal_legacy_4
+	ld de, .HC
 	call PlaceString
 .EndMode:
 	hlcoord 2, 4
@@ -642,14 +642,22 @@ HOF_AnimatePlayerPic:
 .PlayTime:
 	db "PLAY TIME@"
 
-.crystal_legacy_1:
-	db "Crystal@"
+.Game:
+IF DEF(_GOLD)
+	db "GOLD@"
+ELIF DEF(_SILVER)
+	db "SILVER@"
+ENDC
 
-.crystal_legacy_2:
-	db "Legacy@"
+.Version:
+IF DEF(_GOLD)
+	db "SKY@"
+ELIF DEF(_SILVER)
+	db "SEA@"
+ENDC
 
-.crystal_legacy_3:
+.Hard:
 	db "Hard@"
 
-.crystal_legacy_4:
+.HC:
 	db "HC@"
